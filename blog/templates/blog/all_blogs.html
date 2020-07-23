@@ -1,0 +1,11 @@
+Hello Blog
+
+{% if blogs %}
+{% for blog in blogs %}
+<a href='{% url "blog:detail" blog.id %}'><h2>{{ blog.subject }}</h2></a>
+<h5>{{ blog.timestamp }}</h5>
+<p>{{ blog.message }}</p>
+{% endfor %}
+{% else %}
+<h2>No Blogs Created</h2>
+{% endif %}
