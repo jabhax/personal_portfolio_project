@@ -1,0 +1,148 @@
+<html>
+{% load static %}
+{% get_static_prefix as STATIC_URL %}
+
+<head>
+    <!-- Compiled and minified CSS -->
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    -->
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="{% static 'portfolio/css/bootstrap.min.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/all.min.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/simple-line-icons.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/slick.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/animate.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/magnific-popup.css' %}" type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}" type="text/css" media="all">
+    <!--
+    <li><a href='url "blog:all_blogs"'><i class="material-icons right">border_color</i>Blog</a></li>
+    <li><a class="waves-effect waves-teal" href='url "blog:all_blogs"'>Blog</a></li>
+    <li><a class="waves-effect waves-teal" href='static "portfolio/Resume_Justin_Barros.pdf"'>Resume</a></li>
+    -->
+</head>
+
+
+<body class="dark">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="outer">
+            <!-- Google Chrome -->
+            <div class="infinityChrome"><div></div></div>
+            <!-- Safari and others -->
+            <div class="infinity"><div><span></span></div></div>
+            <!-- Stuff -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-outer">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+                        <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+    </div>
+
+    <!-- mobile header -->
+    <header class="mobile-header-1">
+        <div class="container">
+
+            <!-- menu icon -->
+            <div class="menu-icon d-inline-flex mr-4">
+                <button><span></span></button>
+            </div>
+
+            <!-- logo image -->
+            <div class="site-logo">
+                <a href="/"><img src="{{ STATIC_URL }}portfolio/images/logo.svg" alt="JabHax" /></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- desktop header -->
+    <header class="desktop-header-1 d-flex align-items-start flex-column">
+
+        <!-- logo image -->
+        <div class="site-logo">
+            <a href="/"><img src="{{ STATIC_URL }}portfolio/images/logo.svg" alt="JabHax" /></a>
+        </div>
+
+        <!-- main menu -->
+        <nav class='scrollspy'>
+            <ul class='vertical-menu'>
+                <li><a href='#'><i class='icon-home'></i>Home</a></li>
+                <li><a href='#about' class='nav-link'><i class='icon-user-following'></i>About</a></li>
+                <li><a href='#services'><i class='icon-briefcase'></i>Skills</a></li>
+                <li><a href='#exp'><i class='icon-graduation'></i>Experience</a></li>
+                <li><a href='#projects'><i class='icon-layers'></i>Projects</a></li>
+                <li><a href='#blog'><i class='icon-note'></i>Blog</a></li>
+                <li><a href='#contact'><i class='icon-bubbles'></i>Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- site footer -->
+        <div class='footer'>
+            <!-- copyright text -->
+            <span class='copyright'>© 2020 JabHax.</span>
+        </div>
+    </header>
+
+    <!-- main layout -->
+    <main class='content'>
+        <section id='home' class='home d-flex align-items-center'>{% include 'portfolio/home.html' %}</section>
+        <section id='about' class='about'>{% include 'portfolio/about.html' %}</section>
+        <section id='services' class='services'>{% include 'portfolio/skills.html' %}</section>
+        <section id='exp' class='exp'>{% include 'portfolio/experience.html' %}</section>
+        <section id='projects' class='projects'>{% include 'portfolio/projects.html' %}</section>
+        <section id='blog' class='blog'>{% include 'portfolio/blog_preview.html' %}</section>
+        <section id='contact' class='contact'>{% include 'portfolio/contact.html' %}</section>
+    </main>
+    <!-- Go to top button -->
+    <a href='#' id='return-to-top'><i class='fas fa-arrow-up'></i></a>
+
+    <!-- SCRIPTS -->
+    <!-- Compiled and minified JavaScript -->
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    -->
+
+    <script src="{% static 'portfolio/js/jquery-1.12.3.min.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{% static 'portfolio/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/custom.js' %}"></script>
+    <script src="{% static 'portfolio/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/popper.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/infinite-scroll.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/slick.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/contact.js' %}"></script>
+    <script src="{% static 'portfolio/js/validator.js' %}"></script>
+    <script src="{% static 'portfolio/js/wow.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/morphext.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/parallax.min.js' %}"></script>
+    <script src="{% static 'portfolio/js/jquery.magnific-popup.min.js' %}"></script>
+    <script>
+        /*
+        $(document).ready(function () {
+            var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            if (window.location.hash && isChrome) {
+                setTimeout(function () {
+                    var hash = window.location.hash;
+                    window.location.hash = "";
+                    window.location.hash = hash;
+                }, 300);
+            }
+        });
+        */
+    </script>
+
+</body>
+</html>

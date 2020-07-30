@@ -1,11 +1,13 @@
-Hello Blog
-
+{% extends 'portfolio/base.html'%}
+{% block content %}
+<h2>Blog Page: Justin has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
 {% if blogs %}
 {% for blog in blogs %}
 <a href='{% url "blog:detail" blog.id %}'><h2>{{ blog.subject }}</h2></a>
-<h5>{{ blog.timestamp }}</h5>
-<p>{{ blog.message }}</p>
+<h5>{{ blog.timestamp|date:'M d Y'|upper }}</h5>
+<p>{{ blog.message|striptags|truncatechars:100 }}</p>
 {% endfor %}
 {% else %}
 <h2>No Blogs Created</h2>
 {% endif %}
+{% endblock %}
