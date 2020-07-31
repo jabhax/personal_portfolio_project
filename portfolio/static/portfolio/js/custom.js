@@ -140,9 +140,6 @@ $(window).on('load', function() {
               mainClass: 'my-mfp-zoom-in',
               image: {
                   verticalFit: true
-                  titleSrc: function(item) {
-                      return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
-                  }
               },
           });
       });
