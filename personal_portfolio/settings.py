@@ -75,6 +75,10 @@ WSGI_APPLICATION = 'personal_portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+def replace(path):
+    assert isinstance(path, str)
+    return path.replace('\\', os.sep)
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
