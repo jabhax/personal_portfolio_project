@@ -30,6 +30,7 @@
 
     <!-- portolio wrapper -->
     <div class="row portfolio-wrapper">
+        {% if projects %}
         {% for project in projects %}
         <!-- portfolio item -->
         <div class="col-md-4 col-sm-6 grid-item {{ project.category }}">
@@ -52,6 +53,9 @@
             </a>
         </div>
         {% endfor %}
+        {% else %}
+            <h4>No Projects</h4>
+        {% endif %}
     </div>
 
     <!-- more button -->
