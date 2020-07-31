@@ -25,7 +25,7 @@ SECRET_KEY = 'gt)1_1t-(rar8%w6+u%g-q@qj5iuxug(*9*rcvtf9xx51fs21='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jabhax.pythonanywhere.com']
 
 
 # Application definition
