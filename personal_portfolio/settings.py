@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gt)1_1t-(rar8%w6+u%g-q@qj5iuxug(*9*rcvtf9xx51fs21='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['jabhax.pythonanywhere.com']
 
