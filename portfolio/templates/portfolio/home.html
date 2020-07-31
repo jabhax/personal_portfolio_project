@@ -27,10 +27,19 @@
 
     <!-- scroll down mouse wheel -->
     <div class="scroll-down">
+        {% url 'index' as home_url %}
+        {% if request.get_full_path == home_url %}
         <a href="/#about" class="mouse-wrapper">
             <span>Scroll Down</span>
             <span class="mouse"><span class="wheel"></span></span>
         </a>
+        {% else %}
+        {% url 'blogs' as blogs_url %}
+        <a href="/blogs/#blog" class="mouse-wrapper">
+            <span>Scroll Down</span>
+            <span class="mouse"><span class="wheel"></span></span>
+        </a>
+        {% endif %}
     </div>
 
     <!-- parallax layers -->

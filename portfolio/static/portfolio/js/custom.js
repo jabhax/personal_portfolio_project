@@ -79,8 +79,8 @@ $(window).on('load', function() {
 
       $('.work-content').magnificPopup({
         type: 'inline',
-        fixedContentPos: true,
-        fixedBgPos: true,
+        fixedContentPos: false,
+        fixedBgPos: false,
         overflowY: 'auto',
         closeBtnInside: false,
         preloader: false,
@@ -130,6 +130,7 @@ $(window).on('load', function() {
           $(this).magnificPopup({
               delegate: 'a',
               type: 'image',
+              closeOnContentClick: false,
               closeBtnInside: false,
               gallery: {
                   enabled: true,
@@ -137,9 +138,43 @@ $(window).on('load', function() {
               },
               fixedContentPos: false,
               mainClass: 'my-mfp-zoom-in',
+              image: {
+                  verticalFit: true
+                  titleSrc: function(item) {
+                      return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+                  }
+              },
           });
       });
     }
+
+    $(document).ready(function() {
+        $('.zoom-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            closeOnContentClick: false,
+            closeBtnInside: false,
+            mainClass: 'mfp-with-zoom mfp-img-mobile',
+            image: {
+                verticalFit: true,
+                titleSrc: function(item) {
+                    return item.el.attr('title') + ' &middot; <a class="image-source-link" href="'+item.el.attr('data-source')+'" target="_blank">image source</a>';
+                }
+            },
+            gallery: {
+                enabled: true
+            },
+            zoom: {
+                enabled: true,
+                duration: 300, // don't foget to change the duration also in CSS
+                opener: function(element) {
+                    return element.find('img');
+                }
+            }
+            
+        });
+    });
+
 
     bolbyPopup();
 
@@ -157,7 +192,7 @@ $(window).on('load', function() {
         bufferPx: 0,
         maxPage: 6,
         loading: {
-            finishedMsg: "No more works",
+            finishedMsg: "No more projects",
             msgText: '',
             speed: 'slow',
             selector: '.load-more',
@@ -313,7 +348,9 @@ $(function(){
     /*=========================================================================
      Bootstrap Scrollspy
      =========================================================================*/
-    $("body").scrollspy({ target: ".scrollspy"});
+    $("body html").scrollspy({
+        target: ".scrollspy"
+    });
 
     /*=========================================================================
      Counterup JS for facts
@@ -384,7 +421,7 @@ $(function(){
         }
     });
     $('#return-to-top').on('click', function(event) {     // When arrow is clicked
-      event.preventDefault();
+        event.preventDefault();
         $('body,html').animate({
             scrollTop : 0                       // Scroll to top of body
         }, 400);

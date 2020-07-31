@@ -1,9 +1,6 @@
-{% extends 'portfolio/base.html'%}
-{% block content %}
 {{ blog.subject }}
 <br/>
 --{{ blog.timestamp|date:'F jS Y' }}--
 <br/>
 {{ blog.message|safe }}
 <br/>
-{% endblock %}

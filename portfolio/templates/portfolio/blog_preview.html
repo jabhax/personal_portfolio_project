@@ -25,6 +25,12 @@
             </div>
         </div>
         {% endfor %}
+
+        <!-- more button -->
+        <div class="col text-center mt-4">
+            <a href="{% url 'all_blogs' %}" class="btn btn-default"><i class="fas fa-spinner"></i> All Blogs</a>
+        </div>
+
         {% else %}
         <h2>No Blogs Created</h2>
         {% endif %} 

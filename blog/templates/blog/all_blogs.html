@@ -1,13 +1,21 @@
-{% extends 'portfolio/base.html'%}
-{% block content %}
-<h2>Blog Page: Justin has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
+<!-- Compiled and minified CSS -->
+
+{% load static %}
+<h2>All Blogs</h2>
+<h5>Justin has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h5>
 {% if blogs %}
-{% for blog in blogs %}
-<a href='{% url "blog:detail" blog.id %}'><h2>{{ blog.subject }}</h2></a>
-<h5>{{ blog.timestamp|date:'M d Y'|upper }}</h5>
-<p>{{ blog.message|striptags|truncatechars:100 }}</p>
-{% endfor %}
+    <div class="list-group">
+        {% for blog in blogs %}
+        <a href="{% url 'blog:detail' blog.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ blog.subject }}</h5>
+                <small>{{ blog.timestamp|date:'M d Y'|upper }}</small>
+            </div>
+            <p class="mb-1">{{ blog.message|striptags|truncatechars:100 }}</p>
+            <small>- JustinB.</small>
+        </a>
+        {% endfor %}
+    </div>
 {% else %}
-<h2>No Blogs Created</h2>
+    <h2>No Blogs Created</h2>
 {% endif %}
-{% endblock %}

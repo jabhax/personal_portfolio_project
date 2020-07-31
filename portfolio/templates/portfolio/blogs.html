@@ -12,40 +12,81 @@
     <link rel="stylesheet" href="{% static 'portfolio/css/animate.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'portfolio/css/magnific-popup.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}" type="text/css" media="all">
-    <!--
-    <li><a href='url "blog:all_blogs"'><i class="material-icons right">border_color</i>Blog</a></li>
-    <li><a class="waves-effect waves-teal" href='url "blog:all_blogs"'>Blog</a></li>
-    -->
 </head>
 
 <body class="dark">
 
     <!-- Preloader -->
-    {% include 'portfolio/preloader.html' %}
+    <div id="preloader">
+        <div class="outer">
+            <!-- Google Chrome -->
+            <div class="infinityChrome"><div></div></div>
+            <!-- Safari and others -->
+            <div class="infinity"><div><span></span></div></div>
+            <!-- Stuff -->
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-outer">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+                        <feColorMatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+    </div>
 
     <!-- mobile header -->
-    {% include 'portfolio/mobile_header.html' %}
+    <header class="mobile-header-1">
+        <div class="container">
+            <!-- menu icon -->
+            <div class="menu-icon d-inline-flex mr-4">
+                <button><span></span></button>
+            </div>
+
+            <!-- logo image -->
+            <div class="site-logo">
+                <a href="/"><img src="{{ STATIC_URL }}portfolio/images/logo.svg" alt="JabHax" /></a>
+            </div>
+        </div>
+    </header>
 
     <!-- desktop header -->
-    {% include 'portfolio/desktop_header.html' %}
+    <header class="desktop-header-1 d-flex align-items-start flex-column">
+
+        <!-- logo image -->
+        <div class="site-logo">
+            <a href="/"><img src="{{ STATIC_URL }}portfolio/images/logo.svg" alt="JabHax" /></a>
+        </div>
+
+        <!-- main menu -->
+        <nav>
+            <ul class='vertical-menu'>
+                <li class='active'><a href='#'><i class='icon-home'></i>Home</a></li>
+                <li><a href='#blog'><i class='icon-note'></i>Blog</a></li>
+                <li><a href='#contact'><i class='icon-bubbles'></i>Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- site footer -->
+        <div class='footer'>
+            <!-- copyright text -->
+            <span class='copyright'>© 2020 JabHax.</span>
+        </div>
+    </header>
 
     <!-- main layout -->
     <main class='content'>
         <section id='home' class='home d-flex align-items-center'>{% include 'portfolio/home.html' %}</section>
-        <section id='about' class='about'>{% include 'portfolio/about.html' %}</section>
-        <section id='skills' class='skills'>{% include 'portfolio/skills.html' %}</section>
-        <section id='education' class='education'>{% include 'portfolio/education.html' %}</section>
-        <section id='experience' class='experience'>{% include 'portfolio/experience.html' %}</section>
-        <section id='projects' class='projects'>{% include 'portfolio/projects.html' %}</section>
-        <section id='blog' class='blog'>{% include 'portfolio/blog_preview.html' %}</section>
+        <section id='blog' class='blog'>{% include 'blog/all_blogs.html' %}</section>
         <section id='contact' class='contact'>{% include 'portfolio/contact.html' %}</section>
     </main>
-
     <!-- Go to top button -->
-    <a href='#'id='return-to-top'><i class='fas fa-arrow-up'></i></a>
+    <a href='#' id='return-to-top'><i class='fas fa-arrow-up'></i></a>
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'portfolio/js/custom.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.counterup.min.js' %}"></script>
@@ -61,7 +102,6 @@
     <script src="{% static 'portfolio/js/morphext.min.js' %}"></script>
     <script src="{% static 'portfolio/js/parallax.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'portfolio/js/custom.js' %}"></script>
 
 </body>
 </html>

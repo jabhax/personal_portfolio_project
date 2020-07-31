@@ -3,24 +3,31 @@ from .models import Project
 from blog.models import Blog
 
 
+SKILLS = {
+    'prog_langs': {
+        'primary': ['Python', 'Java', 'C/C++', 'JavaScript'],
+        'secondary': ['HTML/5', 'CSS/3', 'Bootstrap', 'Materialize'],
+        'other': ['XML', 'PHP', 'JSON', 'Unix/Linux/Bash', 'MATLAB']
+   },
+    'frameworks': {
+        'mvc': ['Django', 'Flask', 'Angular.js'],
+        'js': ['JQuery', 'D3.js', 'Nodejs/npm', 'Express.js'],
+        'testing': ['Appium', 'Selenium']
+    },
+    'databases': {
+        'primary': ['PostgreSQL', 'MongoDB'],
+        'secondary': ['MySQL']
+    },
+    'environments': {
+        'testing': ['JUnit', 'TestNG', 'unittest (python)'],
+        'ci-cd': ['Jenkins', 'Jira', 'Git', 'SVN'],
+        'virtual': ['VM/Containers: VirtualBox', 'VMWare', 'Docker Container', 'Kubernetes Pods'],
+        'other': ['Vi/Vim', 'Eclipse', 'Sublime', 'Atom', 'LaTex']
+    }
+}
+
 projects = Project.objects.all()
 blogs = Blog.objects.order_by('-timestamp')[:6]
-
-primary_languages = ['Python', 'Java', 'C/C++', 'JavaScript']
-secondary_languages = ['HTML/5', 'CSS/3', 'Bootstrap', 'Materialize']
-other_languages = ['XML', 'PHP', 'JSON', 'Unix/Linux/Bash shell scripting', 'MATLAB']
-
-mvc_frameworks = ['Django', 'Flask', 'Angular.js']
-js_frameworks = ['JQuery', 'D3.js', 'Nodejs/NPM', 'Express.js']
-testing_frameworks = ['Appium', 'Selenium']
-
-dbs = ['PostgreSQL', 'MongoDB', 'MySQL']
-
-testing_envs = ['Eclipse', 'JUnit', 'TestNG', 'unittest (python)']
-ci_cd_envs = ['Jenkins', 'Jira', 'Git', 'SVN']
-virtual_envs = ['VM/Containers: VirtualBox', 'VMWare', 'Docker Container', 'Kubernetes Pods']
-other_envs = ['LaTex', 'Servicenow']
-
 
 def index(request):
     content = parse_skills_content()
@@ -32,47 +39,61 @@ def index(request):
         'databases': content['databases'],
         'environments': content['environments']
     }
-    
     return render(request, 'portfolio/index.html', data_dict)
+
+def all_blogs(request):
+    data_dict = {
+        'blogs': blogs
+    }
+    return render(request, 'portfolio/blogs.html', data_dict)
 
 def group_items(items):
     rotate_str = ''
     n = len(items)
+    if n == 1:
+        return items[0]
     for i in range(n-1):
         item = items[i]
         rotate_str += (items[i] + ' | ')
     rotate_str += items[n-1]
     return rotate_str
 
+def parse_langs():
+    langs = ''
+    langs += group_items(SKILLS['prog_langs']['primary']) + ','
+    langs += group_items(SKILLS['prog_langs']['secondary']) + ','
+    langs += group_items(SKILLS['prog_langs']['other'])
+    return langs
+
+def parse_frameworks():
+    frameworks = ''
+    frameworks += group_items(SKILLS['frameworks']['mvc']) + ','
+    frameworks += group_items(SKILLS['frameworks']['js']) + ','
+    frameworks += group_items(SKILLS['frameworks']['testing'])
+    return frameworks
+
+def parse_envs():
+    environments = ''
+    environments += group_items(SKILLS['environments']['testing']) + ','
+    environments += group_items(SKILLS['environments']['ci-cd']) + ','
+    environments += group_items(SKILLS['environments']['virtual']) + ','
+    environments += group_items(SKILLS['environments']['other'])
+    return environments
+
+def parse_dbs():
+    databases = ''
+    databases += group_items(SKILLS['databases']['primary']) + ','
+    databases += group_items(SKILLS['databases']['secondary']) + ','
+    return databases
+
 def parse_skills_content():
     content = {}
-
     # build primary langs string for text-rotating ul li tags
-    langs = ''
-    langs += group_items(primary_languages) + ','
-    langs += group_items(secondary_languages) + ','
-    langs += group_items(other_languages)
-    content['languages'] = langs
-    print(content['languages'])
-   
+    content['languages'] = parse_langs()
     # build frameworks string for text-rotating ul li tags
-    frameworks = ''
-    frameworks += group_items(mvc_frameworks) + ','
-    frameworks += group_items(js_frameworks) + ','
-    frameworks += group_items(testing_frameworks)
-    content['frameworks'] = frameworks
-    print(content['frameworks'])
-
-    databases = ''
-    databases += group_items(dbs)
-    content['databases'] = databases
-
-    # build string for text-rotating ul li tags
-    environments = ''
-    environments += group_items(testing_envs) + ','
-    environments += group_items(ci_cd_envs) + ','
-    environments += group_items(virtual_envs) + ','
-    environments += group_items(other_envs)
-    content['environments'] = environments
-    print(content['environments'])
+    content['frameworks'] = parse_frameworks()
+    # build environments string for text-rotating ul li tags
+    content['environments'] = parse_envs()
+    # build databases string for text-rotating ul li tags
+    content['databases'] = parse_dbs()
     return content

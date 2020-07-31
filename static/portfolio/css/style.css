@@ -1931,6 +1931,12 @@ body.dark footer.footer {
   box-shadow: 0px 5px 20px 0px rgba(249, 215, 76, 0.5);
 }
 
+.shadow-light-blue {
+  -webkit-box-shadow: 0px 5px 20px 0px rgba(83, 173, 203, 0.5);
+  -moz-box-shadow: 0px 5px 20px 0px rgba(83, 173, 203, 0.5);
+  box-shadow: 0px 5px 20px 0px rgba(83, 173, 203, 0.5);
+}
+
 .padding-30 {
   padding: 30px;
 }
