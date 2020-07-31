@@ -42,6 +42,7 @@ def index(request):
     return render(request, 'portfolio/index.html', data_dict)
 
 def all_blogs(request):
+    blogs = Blog.objects.order_by('-timestamp')
     data_dict = {
         'blogs': blogs
     }
