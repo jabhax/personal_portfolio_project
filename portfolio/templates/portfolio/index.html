@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{% static 'portfolio/css/simple-line-icons.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'portfolio/css/slick.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'portfolio/css/animate.css' %}" type="text/css" media="all">
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.compat.css" type="text/css" media="all">
+    -->
     <link rel="stylesheet" href="{% static 'portfolio/css/magnific-popup.css' %}" type="text/css" media="all">
     <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}" type="text/css" media="all">
     <!--
@@ -42,10 +45,14 @@
     </main>
 
     <!-- Go to top button -->
-    <a href='/#home'id='return-to-top'><i class='fas fa-arrow-up'></i></a>
+    <a href='#' id='return-to-top'><i class='fas fa-arrow-up'></i></a>
+
 
     <!-- SCRIPTS -->
+    <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    -->
+    <script src="{% static 'portfolio/js/jquery-1.12.3.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.waypoints.min.js' %}"></script>
     <script src="{% static 'portfolio/js/jquery.counterup.min.js' %}"></script>

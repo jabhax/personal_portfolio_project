@@ -27,12 +27,14 @@ SKILLS = {
 }
 
 projects = Project.objects.all()
+projects_2 = projects[6:] 
 blogs = Blog.objects.order_by('-timestamp')[:6]
 
 def index(request):
     content = parse_skills_content()
     data_dict = {
         'projects': projects,
+        'projects_2': projects_2,
         'blogs': blogs,
         'langs': content['languages'],
         'frameworks': content['frameworks'],

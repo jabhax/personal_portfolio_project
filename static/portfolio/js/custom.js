@@ -145,31 +145,6 @@ $(window).on('load', function() {
       });
     }
 
-    $(document).ready(function() {
-        $('.zoom-gallery').magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            closeOnContentClick: false,
-            closeBtnInside: false,
-            mainClass: 'mfp-with-zoom mfp-img-mobile',
-            image: {
-                verticalFit: true,
-            },
-            gallery: {
-                enabled: true
-            },
-            zoom: {
-                enabled: true,
-                duration: 300, // don't foget to change the duration also in CSS
-                opener: function(element) {
-                    return element.find('img');
-                }
-            }
-            
-        });
-    });
-
-
     bolbyPopup();
 
     /*=========================================================================
@@ -266,6 +241,16 @@ $(document).on('ready', function() {
       autoplaySpeed: 3000
     });
 
+/*
+
+    $('#return-to-top').on('click', function(event){
+        event.preventDefault();
+        $('html, body').css({scrollTop: 0}, 100);
+        console.log('did it scroll? scrollTop: ' +  $('html, body').scrollTop())
+        return false;
+    }); 
+*/
+
 });
 
 $(function(){
@@ -342,9 +327,7 @@ $(function(){
     /*=========================================================================
      Bootstrap Scrollspy
      =========================================================================*/
-    $("body html").scrollspy({
-        target: ".scrollspy"
-    });
+    $("body, html, window").scrollspy({ target: ".scrollspy" });
 
     /*=========================================================================
      Counterup JS for facts
@@ -407,8 +390,9 @@ $(function(){
     /*=========================================================================
             Scroll to Top
     =========================================================================*/
+/*
     $(window).scroll(function() {
-        if ($(this).scrollTop() >= 350) {        // If page is scrolled more than 50px
+        if ($(this).scrollTop() >= 350 || this.pageYOffset >= 350) {        // If page is scrolled more than 50px
             $('#return-to-top').fadeIn(200);    // Fade in the arrow
         } else {
             $('#return-to-top').fadeOut(200);   // Else fade out the arrow
@@ -416,9 +400,37 @@ $(function(){
     });
     $('#return-to-top').on('click', function(event) {     // When arrow is clicked
         event.preventDefault();
-        $('body,html').animate({
-            scrollTop : 0                       // Scroll to top of body
-        }, 400);
+        $('html, body').animate({
+            scrollTop : 0,                       // Scroll to top of body
+            pageYOffset : 0                       // Scroll to top of body
+        },400);
+        console.log('clicked return to top');
+        return false
     });
+
+*/
+    $("#return-to-top").on('click', function(){
+        //event.preventDefault();
+        //console.log('html,body.scrollTop (before): ' +  $('html,body').scrollTop());
+        //console.log('html.scrollTop (before): ' +  $('html').scrollTop());
+        //console.log('body.scrollTop (before): ' +  $('body').scrollTop());
+        //console.log('document.scrollTop (before): ' +  $(document).scrollTop());
+        //$('html,body').animate({ scrollTop: 0 }, 200, function() { alert('Animation complete.'); });
+        $('html,body').animate({ scrollTop: 0 }, 200, function() { console.log('scroll up animation complete'); });
+        //console.log('html,body.scrollTop (after): ' +  $('html,body').scrollTop());
+        //console.log('html.scrollTop (after): ' +  $('html').scrollTop());
+        //console.log('body.scrollTop (after): ' +  $('body').scrollTop());
+        //console.log('document.scrollTop (after): ' +  $(document).scrollTop());
+    });
+
+    $(window).scroll(function(){
+        var scroll = $("#return-to-top");
+        if ($(this).scrollTop() >= 350) {
+            scroll.fadeIn(200);
+        } else {
+            scroll.fadeOut(200);
+        }
+    });
+
 
 });
