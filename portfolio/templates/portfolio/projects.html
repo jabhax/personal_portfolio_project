@@ -33,9 +33,9 @@
         {% if projects %}
         {% for project in projects %}
         <!-- portfolio item -->
-        <div class="col-md-4 col-sm-6 grid-item {{ project.category }}">
+        <div id='project-item' class="col-md-4 col-sm-6 grid-item infinite-container {{ project.category }}">
             <a class='work-image' href='{{ project.image.url }}'></a>
-                <div class="portfolio-item rounded shadow-dark">
+                <div class="portfolio-item rounded shadow-dark infinite-item">
                     <div class="details">
                         <span class="term">{{ project.category }}</span>
                         <a href='{{ project.url }}'><h4 class="title">{{ project.title }}</h4></a>
@@ -57,18 +57,30 @@
             <h4>No Projects</h4>
         {% endif %}
     </div>
-
+    {% if projects.has_next %}
     <!-- more button -->
-    <div class="load-more text-center mt-4">
-        <a href="javascript:" class="btn btn-default"><i class="fas fa-spinner"></i> Load more</a>
-        <!-- numbered pagination (hidden for infinite scroll) -->
-        <ul class="portfolio-pagination list-inline d-none">
-            <li class="list-inline-item">1</li>
-            <li class="list-inline-item">
-                <section id='projects-2' class='projects-2'>{% include 'portfolio/projects-2.html' %}</section>
-                <a href="#projects-2">2</a>
-            </li>
-        </ul>
+    <div class='row'>
+        <div id='load-more' class="col text-center mt-4">
+            <a href="?page={{ projects.next_page_number }}#projects" class="btn btn-default infinite-more-link">
+                <i class="fas fa-spinner"></i> Load More
+            </a>
+        </div>
     </div>
-
+    {% else %}
+        <div class="col text-center mt-4 ">
+            <a href="?page={{ projects.previous }}#projects" class="btn btn-default infinite-more-link">Prev</a>
+        </div>
+    {% endif %}
+    <div class="loading" style="display: none;">Loading...</div>
+    <script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+                onBeforePageLoad: function () {
+                    $('.loading').show();
+                },
+                onAfterPageLoad: function ($items) {
+                    $('.loading').hide();
+                }
+            });
+    </script>
 </div>

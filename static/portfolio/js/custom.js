@@ -416,7 +416,7 @@ $(function(){
         //console.log('body.scrollTop (before): ' +  $('body').scrollTop());
         //console.log('document.scrollTop (before): ' +  $(document).scrollTop());
         //$('html,body').animate({ scrollTop: 0 }, 200, function() { alert('Animation complete.'); });
-        $('html,body').animate({ scrollTop: 0 }, 200, function() { console.log('scroll up animation complete'); });
+        $('html,body').animate({ scrollTop: $(this).offset().top }, 200, function() { console.log('scroll up animation complete'); });
         //console.log('html,body.scrollTop (after): ' +  $('html,body').scrollTop());
         //console.log('html.scrollTop (after): ' +  $('html').scrollTop());
         //console.log('body.scrollTop (after): ' +  $('body').scrollTop());

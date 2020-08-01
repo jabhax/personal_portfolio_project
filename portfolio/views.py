@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from blog.models import Blog
@@ -26,15 +27,27 @@ SKILLS = {
     }
 }
 
-projects = Project.objects.all()
-projects_2 = projects[6:] 
+all_projects = Project.objects.all()
+projects = None
+projects2 = all_projects[:6] 
 blogs = Blog.objects.order_by('-timestamp')[:6]
 
 def index(request):
     content = parse_skills_content()
+    paginator = Paginator(all_projects, 3) # Show 3 projects per page
+    page = request.GET.get('page')
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        projects = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        projects = paginator.page(paginator.num_pages)
+
     data_dict = {
         'projects': projects,
-        'projects_2': projects_2,
+        'projects2': projects2,
         'blogs': blogs,
         'langs': content['languages'],
         'frameworks': content['frameworks'],

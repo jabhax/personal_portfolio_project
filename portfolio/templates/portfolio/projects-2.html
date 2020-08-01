@@ -1,27 +1,48 @@
-{% if projects %}
-{% for project in projects_2 %}
-<!-- portfolio item -->
-<div class="col-md-4 col-sm-6 grid-item {{ project.category }}">
-    <a class='work-image' href='{{ project.image.url }}'></a>
-        <div class="portfolio-item rounded shadow-dark">
-            <div class="details">
-                <span class="term">{{ project.category }}</span>
-                <a href='{{ project.url }}'><h4 class="title">{{ project.title }}</h4></a>
-                <span class="more-button"><i class="icon-link"></i></span>
-            </div>
-            <div class="thumb">
-                {% if project.url %}
-                    <img src="{{ project.image.url }}" alt="Portfolio-title" style="overflow:none; width:330px; height:267px;"/>
-                {% else %}
-                    <img src="https://via.placeholder.com/330x267" alt="Portfolio-title" />
-                {% endif %}
-                <div class="mask"></div>
-            </div>
-        </div>
-    </a>
+{% if projects.has_other_pages %}
+<div class='pager'>
+    <div>
+        <ul class="pagination">
+            {% if projects.has_previous %}
+            <li><a href="?page={{ projects.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in projects.paginator.page_range %}
+            {% if projects.number == i %}
+             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if projects.has_next %}
+            <li><a href="?page={{ projects.next_page_number }}">&raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>&raquo;</span></li>                                                                          
+            {% endif %}
+        </ul>
+    </div>
 </div>
-{% endfor %}
-{% else %}
-    <h4>No Projects</h4>
-{% endif %}
 
+<style type="text/css">
+   .pager {
+      padding-top: 20px;
+      padding-left: 40px;
+      }
+   .pager .page a {
+      border: 3px solid #bbbbbb;
+      margin-left: 1px;
+      margin-right: 1px;
+      padding-left: 4px;
+      padding-right: 4px;
+      text-decoration: none;
+      color: #000000;
+      }
+   .pager .current {
+      border: 3px solid #444444;
+      margin-left: 2px;
+      margin-right: 2px;
+      padding-left: 2px;
+      }
+</style>
+
+{% endif %}
