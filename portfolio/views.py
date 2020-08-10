@@ -34,7 +34,7 @@ blogs = Blog.objects.order_by('-timestamp')[:6]
 
 def index(request):
     content = parse_skills_content()
-    paginator = Paginator(all_projects, 3) # Show 3 projects per page
+    paginator = Paginator(all_projects, 6) # Show 3 projects per page
     page = request.GET.get('page')
     try:
         projects = paginator.page(page)
