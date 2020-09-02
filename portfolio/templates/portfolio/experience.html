@@ -8,37 +8,24 @@
         <div class="col-md-6">
             <!-- timeline wrapper -->
             <div class="timeline exp bg-dark rounded shadow-light padding-30 overflow-hidden">
+                {% if experiences %}
+                {% for exp in experiences %}
                 <!-- timeline item -->
                 <div class="timeline-container wow fadeInUp">
                     <div class="content">
-                        <span class="time">April 2017 ~ Present</span>
-                        <h3 class="title">Software Engineer, DATERA, Santa Clara, CA</h3>
+                        <span class="time">{{ exp.start_date }} ~ {{ exp.end_date }}</span>
+                        <h6 class="title">
+                            <strong>{{ exp.title }}</strong> @ {{ exp.company_name }}
+                        </h6>
                         <ul>
-                            <li>Python development for new &amp existing tests in order to automate and identify regressions in the product involving data read/write mismatches, race conditions from timing or asynchronous callbacks.</li> 
-                            <li>Python development for internal framework APIs to communicate with cluster/storage nodes.</li>
-                            <li>Owned 2-3 core product features from a QA Automation standpoint.</li>
-                            <li>Mentored new &amp existing core QA members in areas of ownership.</li>
-                            <li>Proficient in iSCSI, cloud clusters, iops, data replication, and application/data driven practices.</li>
+                            {% for responsibility in exp.responsibilities %}
+                            <li>{{ responsibility }}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
-
-                <!-- timeline item -->
-                <div class="timeline-container wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="content">
-                        <span class="time">July 2016 ~ March 2017</span>
-                        <h3 class="title">Software Developer, Wells Fargo Bank,  San Francisco, CA</h3>
-                        <ul>
-                            <li>Framework development for automation testing using Java, Appium, Selenium, JUnit, and TestNG.</li> 
-                            <li>Performed QA automation testing on Android and iOS mobile devices for the Wells Fargo mobile app.</li>
-                            <li>Heavy exposure to mobile development, various software architectures, QA automation/whitebox testing.</li>
-                            <li style="list-style: none;"><br/></li>
-                            <li style="list-style: none;"><br/></li>
-                            <li style="list-style: none;"><br/></li>
-                            <li style="list-style: none;"><br/></li>
-                        </ul>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
                 <!-- main line -->
                 <span class="line"></span>
             </div>
@@ -50,32 +37,28 @@
             <!-- timeline wrapper -->
             <div class="timeline exp bg-dark rounded shadow-light padding-30 overflow-hidden">
 
-                <!-- timeline item -->
-                <div class="timeline-container wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="content">
-                        <span class="time">January 2016 ~ June 2016</span>
-                        <h3 class="title">Software Engineer Intern, Xactly Corporation, San Jose, CA</h3>
-                        <ul>
-                            <li>Developed and designed a full stack web-based application for form creation, management, submission, and result visualization. It features a dynamic UI form generator similar to Wufoo or Google Forms.</li>
-                            <li>Designed for three types of users: Administrators, Managers, and Employees.</li>
-                            <li>Heavy exposure to JQuery, AngularJS, NodeJS, Express, MongoDB and MySQL.</li>
-                            <li>Worked in Agile development environments using scrum and burn-up charts under Xactly’s mentorship.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- timeline item -->
-                <div class="timeline-container wow fadeInUp">
-                    <div class="content">
-                        <span class="time">September 2013 ~ June 2016</span>
-                        <h3 class="title">ResNet Technician & Lead/Supervisor, UC Santa Cruz, CA</h3>
-                        <ul>
-                            <li>Worked as a full-time student to interview, train, and manage 20+ staff members in IT computer repair, network troubleshooting, and customer relationship management.</li>
-                            <li>Expedited and delegated the repairs of dozens of computers within the office with various issues including virus infections, re-formats, and replacing malfunctioning hardware on a daily basis.</li>
-                            <li>Effectively resolved hundreds of campus wide network outages using tools and skills that identified disruptive network behaviors.</li>
-                        </ul>
-                    </div>
-                </div>
+                {% if experiences %}
+                    {% for exp2 in experiences2 %}
+                        <!-- timeline item -->
+                        <div class="timeline-container wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="content">
+                                <span class="time">{{ exp2.start_date }} ~ {{ exp2.end_date }}</span>
+                                <h6 class="title">
+                                    <strong>{{ exp2.title }}</strong> @ {{ exp2.company_name }}
+                                </h6>
+                                <ul>
+                                    {% for responsibility in exp2.responsibilities %}
+                                    <li>{{ responsibility }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% if exp2.company_name == 'Xactly Corp.'%}
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <br/>
 
                 <!-- main line -->
                 <span class="line"></span>

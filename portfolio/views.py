@@ -6,26 +6,103 @@ from blog.models import Blog
 
 SKILLS = {
     'prog_langs': {
-        'primary': ['Python', 'Java', 'C/C++', 'JavaScript'],
-        'secondary': ['HTML/5', 'CSS/3', 'Bootstrap', 'Materialize'],
-        'other': ['XML', 'PHP', 'JSON', 'Unix/Linux/Bash', 'MATLAB']
+        'primary': ['<b>Python</b>', '<b>Java</b>', 'JavaScript (ES6+)', 'C/C++'],
+        'secondary': ['<b>HTML/5</b>', '<b>CSS/3</b>', 'Bootstrap', 'Materialize'],
+        'other': ['XML', 'PHP', 'JSON', 'Unix/Linux/<b>Bash</b>', 'MATLAB']
    },
     'frameworks': {
-        'mvc': ['Django', 'Flask', 'Angular.js'],
-        'js': ['JQuery', 'D3.js', 'Nodejs/npm', 'Express.js'],
+        'mvc': ['<b>Angular/Angular.js</b>', '<b>Django</b>', 'Flask', 'React'],
+        'js': ['<b>TypeScript</b>', 'JQuery', 'D3.js', 'Nodejs/npm', 'Express.js'],
         'testing': ['Appium', 'Selenium']
     },
     'databases': {
-        'primary': ['PostgreSQL', 'MongoDB'],
-        'secondary': ['MySQL']
+        'primary': ['PostgreSQL', 'MongoDB', 'Firebase'],
+        'secondary': ['MySQL', 'SQLite']
     },
     'environments': {
         'testing': ['JUnit', 'TestNG', 'unittest (python)'],
         'ci-cd': ['Jenkins', 'Jira', 'Git', 'SVN'],
-        'virtual': ['VM/Containers: VirtualBox', 'VMWare', 'Docker Container', 'Kubernetes Pods'],
-        'other': ['Vi/Vim', 'Eclipse', 'Sublime', 'Atom', 'LaTex']
+        'virtual': ['VM/Containers: VirtualBox', 'VMWare', '<b>Docker Container</b>', 'Kubernetes Pods'],
+        'other': ['<b>Vi/Vim</b>', 'Eclipse', 'Sublime', '<b>Atom</b>', 'LaTex']
     }
 }
+
+EXPERIENCES = [
+    {
+        'title': 'Software Engineer',
+        'company_name': 'Datera, Inc.',
+        'start_date': 'April 2017',
+        'end_date': 'Present',
+        'responsibilities': [
+            ('Development for internal framework APIs to communicate with '
+             'clusters/storage nodes.'),
+            ('Owned 2-3 core product features from a QA & Release standpoint; '
+             'Point-of-Contact for the life-cycle of nodes/clusters and '
+             'node-data mappings.'),
+            ('Enforced good ethics & clean coding standards using PEP-8, '
+             'Flake8, Pylint, and TDD; daily peer-code review, bug '
+             'regression/triaging & automation, OOP & architectural design '
+             'within internal product libraries.'),
+            ('Proficient in iSCSI, cloud clusters, iops, replication, and '
+             'application/data driven practices; worked in various development'
+             ' stacks, data layers, OS-level architectures, Cloud-related '
+             'infrastructures: clusters, storage nodes, iops, iSCSI layer, '
+             'data-inconsistencies, data-replication, and data-orchestration.')
+        ]
+    },
+    {
+        'title': 'Software Developer',
+        'company_name': 'Wells Fargo Bank',
+        'start_date': 'July 2016',
+        'end_date': 'March 2017',
+        'responsibilities': [
+            ('Design, architect, and develop an automation testing framework '
+             'from the ground-up using Java/EE, Appium, Selenium, JUnit, '
+             'TestNG, SVN, Maven.'),
+            ('Leveraged the framework being developed to create and '
+             'continuously integrate automated scripts on browsers, Android, '
+             'iOS, Windows mobile devices for the Wells Fargo banking app.'),
+            ('Helped Wells Fargo cut down on manual QA cost through the Testing'
+             '& Automation Framework.'),
+            ('Joined with one other junior member and expanded the team from '
+             'size two to ten by the end.')
+        ]
+    },
+    {
+        'title': 'Developer Intern',
+        'company_name': 'Xactly Corp.',
+        'start_date': 'January 2016',
+        'end_date': 'June 2016',
+        'responsibilities': [
+            ('Developed a full-stack web-based application for form creation, '
+             'management, submission, and result visualization which features '
+             'a dynamic UI form generator; designed to meet the demands of '
+             'Xactly Administrators, Managers, and Employees.'),
+            ('Agile development using MEAN stack with JQuery, MySQL.'),
+            ('Expedited development process using Agile, scrum and burn-up '
+             'charts under Xactly’s mentorship.')
+        ]
+    },
+    {
+        'title': 'Technician Lead & Supervisor',
+        'company_name': 'ResNet (UCSC)',
+        'start_date': 'September 2013',
+        'end_date': 'April 2016',
+        'responsibilities': [
+            ('Worked as a full-time student to interview, train, and manage '
+             '20+ university staff members in IT computer repair, network '
+             'troubleshooting, and customer relationship management.'),
+            ('Expedited and delegated the repairs of dozens of computers '
+             'within the office with various issues including virus '
+             'infections, re-formats, and replacing malfunctioning hardware '
+             'on a daily basis.'),
+            ('Effectively resolved hundreds of campus wide network outages '
+             'using tools and skills that identified disruptive network '
+             'behaviors.')
+        ]
+    }
+];
+
 
 all_projects = Project.objects.all()
 projects = None
@@ -52,7 +129,9 @@ def index(request):
         'langs': content['languages'],
         'frameworks': content['frameworks'],
         'databases': content['databases'],
-        'environments': content['environments']
+        'environments': content['environments'],
+        'experiences': EXPERIENCES[:2],
+        'experiences2': EXPERIENCES[2:]
     }
     return render(request, 'portfolio/index.html', data_dict)
 
